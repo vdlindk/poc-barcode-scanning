@@ -1,0 +1,25 @@
+$iconWidth: 56px;
+.sidebar-toggle-hidden {
+  display: none;
+}
+.sidebar-toggle-visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebar-toggle {
+  padding: 0;
+  margin: 8px;
+  min-width: $iconWidth;
+}
+mat-toolbar {
+  display: flex;
+  > span {
+    flex: 1 1 0px;
+  }
+}
+
+.toolbar-link {
+  display: flex;
+  color: white;
+}
