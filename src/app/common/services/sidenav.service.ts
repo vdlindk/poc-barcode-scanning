@@ -14,28 +14,28 @@ export class SidenavService {
     this._sideNav = sideNav;
   }
 
-  private $breakPointState = toSignal(
+  private breakPointState = toSignal(
     this.breakpointObserver.observe([Breakpoints.XSmall]),
     { requireSync: true }
   );
 
-  private $navigation = toSignal(
+  private navigation = toSignal(
     this.router.events.pipe(
       filter((routerEvent) => routerEvent instanceof NavigationEnd)
     )
   );
 
-  $isSmallScreen = computed(() => this.$breakPointState().matches);
+  isSmallScreen = computed(() => this.breakPointState().matches);
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly router: Router
   ) {
     effect(() => {
-      this.$navigation();
+      this.navigation();
 
       untracked(() => {
-        if (this.$isSmallScreen()) {
+        if (this.isSmallScreen()) {
           this._sideNav?.close();
         }
       });

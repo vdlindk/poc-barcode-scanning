@@ -27,7 +27,7 @@ import { ToolbarTitle } from './toolbar-title.type';
         mat-button
         (click)="toggleSidenav()"
         class="sidebar-toggle"
-        [ngClass]="$buttonClass()"
+        [ngClass]="buttonClass()"
       >
         <mat-icon>menu</mat-icon>
       </button>
@@ -36,25 +36,13 @@ import { ToolbarTitle } from './toolbar-title.type';
   styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
-  title = input(
-    { title: '' },
-    {
-      transform: (v: string | ToolbarTitle | undefined | null) => {
-        const nonNullishTitle = v ?? '';
-        if (typeof nonNullishTitle === 'string') {
-          return { title: nonNullishTitle } as ToolbarTitle;
-        } else {
-          return nonNullishTitle;
-        }
-      },
-    }
-  );
-
-  $buttonClass = computed(() =>
-    this.sideNavService.$isSmallScreen()
+  title = input<ToolbarTitle>({ title: '' });
+  buttonClass = computed(() =>
+    this.sideNavService.isSmallScreen()
       ? 'sidebar-toggle-visible'
       : 'sidebar-toggle-hidden'
   );
+
   constructor(private readonly sideNavService: SidenavService) {}
 
   toggleSidenav() {

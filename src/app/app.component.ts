@@ -20,8 +20,8 @@ import { SidenavService } from './common/services/sidenav.service';
     <mat-sidenav-container class="pbs-sidenav-container">
       <mat-sidenav
         #sidenav
-        [mode]="$sideNavMode()"
-        [opened]="!$isSmallScreen()"
+        [mode]="sideNavMode()"
+        [opened]="!isSmallScreen()"
         class="pbs-sidenav"
       >
         <mat-toolbar color="primary">POC barcode scanning</mat-toolbar>
@@ -48,13 +48,13 @@ import { SidenavService } from './common/services/sidenav.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements AfterViewInit {
-  $isSmallScreen = this.sidenavService.$isSmallScreen;
-  $sideNavMode = computed(() => (this.$isSmallScreen() ? 'over' : 'side'));
-  private $sideNav = viewChild.required(MatSidenav);
+  isSmallScreen = this.sidenavService.isSmallScreen;
+  sideNavMode = computed(() => (this.isSmallScreen() ? 'over' : 'side'));
+  private sideNav = viewChild.required(MatSidenav);
 
   constructor(private readonly sidenavService: SidenavService) {}
 
   ngAfterViewInit(): void {
-    this.sidenavService.sideNav = this.$sideNav();
+    this.sidenavService.sideNav = this.sideNav();
   }
 }
