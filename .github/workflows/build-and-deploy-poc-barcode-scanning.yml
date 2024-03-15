@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: build the angular application
-        run: npx ng build --configuration=development
+        run: npx ng build
       - name: archive the build application
         uses: actions/upload-artifact@v4
         with:
