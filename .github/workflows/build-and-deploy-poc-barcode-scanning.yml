@@ -14,7 +14,7 @@ jobs:
       - name: build the angular application
         run: npx ng build --base-href=/poc-barcode-scanning/
       - name: archive the build application
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist/poc-barcode-scanning/browser
   deploy-poc-barcode-scanning:
