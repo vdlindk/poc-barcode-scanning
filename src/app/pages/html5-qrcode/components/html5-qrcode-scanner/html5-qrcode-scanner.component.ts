@@ -30,7 +30,7 @@ export class Html5QrcodeScannerComponent implements AfterViewInit, OnDestroy {
       const cameraId = devices[0].id;
       this.html5Qrcode = new Html5Qrcode('html5-qrcode-scanner');
       await this.html5Qrcode.start(
-        cameraId,
+        { facingMode: 'environment' },
         {
           fps: 4,
           qrbox: 250,
